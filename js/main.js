@@ -44,4 +44,75 @@ const expenses = {
   }
 };
 
-console.log(expenses.calculateMonthlyExpenses); 
+console.log(expenses.calculateMonthlyExpenses());
+
+// 2. Abstraction
+function Vehicle() {
+  throw new Error("Cannot create an instance of abstract class");
+}
+
+Vehicle.prototype.drive = function() {
+  return `Driving ${this.make} ${this.model}`;
+};
+
+// Now if we try to create an instace of vehicle class, we will get an error
+// const v1 = new Vehicle("Range Rover");
+// Uncaught Error: Cannot create an instance of abstract class at new Vehicle
+
+// Now let's create a Car class and make it inherit from Vehicle class
+function Car(make, model) {
+  this.make = make;
+  this.model = model;
+}
+
+Object.setPrototypeOf(Car.prototype, Vehicle.prototype);
+// Now we can create an instance of car and access properties and method in Vehicle
+// but, we can't create an instance of Vehicle and that's Abstraction implementation
+
+const c1 = new Car("Range Rover", 2020);
+// Car { make: "Range Rover", model: 2020 }
+c1.drive(); // Driving Range Rover 2020
+
+// 3. Polymorphism
+// Base (master) class
+class Shape {
+  draw() {
+    return "Draw a Shape";
+  }
+}
+
+// Derived (sub) classes
+class Circle extends Shape {
+  constructor() {
+    super();
+  }
+  draw() {
+    return "Draw a Circle";
+  }
+}
+
+class Square extends Shape {
+  constructor() {
+    super();
+  }
+  draw() {
+    return "Draw a Square";
+  }
+}
+
+class Rectangle extends Shape {
+  constructor() {
+    super();
+  }
+}
+
+const circle = new Circle();
+const square = new Square();
+const rectangle = new Rectangle();
+
+circle.draw(); // Draw a Circle
+square.draw(); // Draw a Square
+rectangle.draw(); // Draw a Shape
+
+
+/////

@@ -1,7 +1,7 @@
-// 2. Abstraction
+// Abstraction
 
   function Person() {
-    return
+    throw new Error("Cannot create an instance of abstract class");
   }
   
   Person.prototype.who= function() {
@@ -32,8 +32,8 @@ class You{
         this.name = name;
         this.age = age;
     }
-
-    who (instance){
+// intance
+    who (){
         return `You are ${this.name} with ${this.age} years old`;
     }
    
